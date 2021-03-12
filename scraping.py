@@ -36,7 +36,7 @@ def scrape_all():
     # Stop webdriver and return data
     browser.quit()
     return data
-    
+
 # Scrape news from nasa mars news website
 def mars_news(browser):
     # Visit the mars nasa news site
@@ -101,6 +101,7 @@ def featured_image(browser):
 #Code for the facts table will be updated in a similar manner to the other two. 
 # # This time, though, we'll be adding BaseException to our except block for error handling.
 def mars_facts():
+    # Add try/except for error handling
     try:
       # use 'read_html" to scrape the facts table into a dataframe
         df = pd.read_html('http://space-facts.com/mars/')[0]

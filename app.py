@@ -1,6 +1,8 @@
 #improt python dependancies
-from flask import Flask, render_template
-from flask_pymongo import PyMongo 
+from flask import Flask, render_template , redirect
+from flask_pymongo import PyMongo
+import scraping
+
 #import package form current application
 import scraping
 
@@ -9,8 +11,10 @@ app = Flask(__name__)
 
 #use pymonog to setup mongo connection
 # add mongo URI uniform resource identifier in the app config.
-app.config["MONGI_URI"] = "mongodb://localbost:27017/mars_app"
-mongo = PyMongo(app)
+#app.config["MONGO_URI"] = "mongodb://localbost:27017/mars_app"
+mongo = PyMongo(app, uri="mongodb://127.0.0.1:27017/mars_app")
+#mongo =  PyMongo(app)
+
 
 ## Setup the Route for the web page. 
 # One one for the main HTML page everyone will view when visiting the web app, 
@@ -20,9 +24,9 @@ mongo = PyMongo(app)
 @app.route("/")
 def index():
     #main page shows the results from the latest mongo db results
-    mars = mongo.db.mars.find_one()
+    mars_data = mongo.db.mars.find_one()
     # render the index html page with data populated from mongo db
-    return render_tempalte("index.html", mars = mars)
+    return render_template("index.html", mars = mars_data)
 
 # 2nd route is when the scrape code run to scrape latest info and refresh the index
 @app.route("/scrape")
