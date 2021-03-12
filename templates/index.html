@@ -43,25 +43,29 @@
         <div class="col-md-4">
           <!-- Mars Facts -->
           <div class="row" id="mars-facts">
-            <h4>Mars Facts</h4>
+            <h4> Mars Facts</h4>
             {{ mars.facts | safe }}
           </div>
         </div>
       </div>
       <!-- Add section for Mars Hemisphere  -->
       <div class="row" id="mars-hemispheres">
-        <div class="col-md-12">
-          <h2>Mars Hemispheres Images</h2>
-          {% for hemisphere in mars.hemispheres %}
-            <img
-              src="{{mars.hemispheres.image }}"
-              class="img-responsive"
-              alt="{{mars.hemispheres.title }}"
-            />
-          {% endfor %}
+        <!-- <div class="col-md-12">  -->
+        <div class="page-header">
+            <h2 class="text-center">Mars Hemispheres</h2>
         </div>
+        {% for hemisphere in mars.hemispheres %}
+            <div class="col-md-6">
+              <img
+                src= "{{ hemisphere.image_url }}"
+                class="img-responsive"
+                alt= "{{ hemisphere.title }}"
+              />
+              <div class="caption">{{ hemisphere.title }}</div> 
+            </div>
+        {% endfor %}
+        <!--  </div> -->
       </div>
     </div>
   </body>
 </html>
-IMPORTANT

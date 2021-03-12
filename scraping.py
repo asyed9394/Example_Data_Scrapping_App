@@ -30,6 +30,7 @@ def scrape_all():
       "news_paragraph": news_paragraph,
       "featured_image": featured_image(browser),
       "facts": mars_facts(),
+      "hemispheres" : mars_hemispheres(browser),
       "last_modified": dt.datetime.now()
         }
 
@@ -115,9 +116,40 @@ def mars_facts():
     df.set_index('Description', inplace=True)
 
     # Convert dataframe into HTML format, add bootstrap
-    return df.to_html()
+    return df.to_html(classes="table table-striped")
 
+def mars_hemispheres(browser):
+    # 1. Use browser to visit the URL 
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
 
+    # 2. Create a list to hold the images and titles.
+    hemisphere_image_urls = []
+
+    # 3. Write code to retrieve the image urls and titles for each hemisphere.
+    #setup the html parse
+    html = browser.html
+    news_soup = soup(html, 'html.parser')
+    try:
+        div_data = news_soup.find_all('div', class_='item')
+        for div in div_data:
+            title = div.find('h3').text
+            link = div.find('a')['href']
+            browser.links.find_by_href(link).last.click()
+            time.sleep(5) # add delay as browser could take time to load full html
+            html=browser.html
+            image_soup = soup(html, 'html.parser')
+            image_div = image_soup.find('div', class_='downloads')
+            image = image_div.find('a')['href']
+            hemisphere_image_urls.append({
+                'image_url' : image,
+                'title' : title        
+                })
+            browser.back()
+    except :
+        traceback.print_exc() ## added to troubleshoot
+        return None
+    return hemisphere_image_urls
 
 if __name__ == "__main__":
     # If running as script, print scraped data
