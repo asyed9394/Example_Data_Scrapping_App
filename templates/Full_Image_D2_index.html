@@ -15,10 +15,8 @@
       <!-- Add Jumbotron to Header -->
       <div class="jumbotron text-center">
         <h1>Mission to Mars</h1>
-        <!-- Add a button to activate scraping script 
-           changing button format using color for success buttong type and using 
-          block level button -->
-        <p><a class="btn btn-success btn-block active" href="/scrape" role="button">Scrape New Data</a></p>
+        <!-- Add a button to activate scraping script -->
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
       </div>
       <!-- Add section for Mars News -->
       <div class="row" id="mars-news">
@@ -27,8 +25,7 @@
             <div class="media-body">
               <h2>Latest Mars News</h2>
               <h4 class="media-heading">{{ mars.news_title }}</h4>
-              <!-- Formating news to italicized  -->
-              <p><em>{{ mars.news_paragraph }}</em></p>
+              <p>{{ mars.news_paragraph }}</p>
             </div>
           </div>
         </div>
@@ -46,26 +43,24 @@
         <div class="col-md-4">
           <!-- Mars Facts -->
           <div class="row" id="mars-facts">
-            <!--change the fact header to same as feature image header type-->
-            <h2> Mars Facts</h2>
+            <h4> Mars Facts</h4>
             {{ mars.facts | safe }}
           </div>
         </div>
       </div>
       <!-- Add section for Mars Hemisphere  -->
       <div class="row" id="mars-hemispheres">
+        <!-- <div class="col-md-12">  -->
         <div class="page-header">
+            <h2 class="text-center">Mars Hemispheres</h2>
         </div>
-            <!-- change image header to same as h1>  -->
-            <h1 class="text-center">Mars Hemispheres</h1>
-        {% for hemisphere in mars.hemispheres %}</h1>
-            <!-- changing images to thumbnail so use 4-->
-            <div class="col-md-3">
+        {% for hemisphere in mars.hemispheres %}
+            <div class="col-md-6">
               <img
                 src= "{{ hemisphere.image_url }}"
-                class="img-responsive img-thumbnail"
+                class="img-responsive"
                 alt= "{{ hemisphere.title }}"
-              /> 
+              />
               <div class="caption">{{ hemisphere.title }}</div> 
             </div>
         {% endfor %}
