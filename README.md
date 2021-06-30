@@ -1,7 +1,7 @@
 # Mission To Mars - Latest News and Facts
 
 ## Project Overview:
-The web page Mission to Mars scrapes latest news , pcitures and facts about mars from different websites and present this information in a nice layout.
+The web page Mission to Mars scrapes latest news , pictures and facts about mars from different websites and present this information in a nice layout.
 
 ## Solution overview:
 
