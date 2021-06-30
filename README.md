@@ -30,7 +30,7 @@ In addtion to abvove mentiond websites used for scraping data , following tools 
 
 ## Code
 
-- Final Scrape code: [Scrape Code](scrapping.py)
+- Final Scrape code: [Scrape Code](scraping.py)
 - Final web app code: [Web app code](app.py)
 - HTML for root: [Web app HTML](templates\index.html)
 
